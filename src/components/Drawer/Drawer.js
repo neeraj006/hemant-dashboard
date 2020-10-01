@@ -27,6 +27,16 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import { withRouter } from "react-router-dom";
+
+const routes = [
+  { screenName: "Dashboard", path: "/dashboard" },
+  { screenName: "Vendors", path: "/vendors" },
+  { screenName: "Orders", path: "/orders" },
+  { screenName: "Customers", path: "/customers" },
+  { screenName: "Users", path: "/users" },
+  { screenName: "Banners", path: "/banners" },
+];
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -72,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+function PrimarySearchAppBar({ history }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -239,17 +249,14 @@ export default function PrimarySearchAppBar() {
         </div>
         <Divider />
         <List>
-          {[
-            "Dashboard",
-            "Vendors",
-            "Orders",
-            "Customers",
-            "Users",
-            "Banners",
-          ].map((text, index) => (
-            <ListItem button key={text}>
+          {routes.map((route, index) => (
+            <ListItem
+              button
+              key={route.screenName}
+              onClick={() => history.push(route.path)}
+            >
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <ListItemText primary={text} />
+              <ListItemText primary={route.screenName} />
             </ListItem>
           ))}
         </List>
@@ -268,3 +275,5 @@ export default function PrimarySearchAppBar() {
     </div>
   );
 }
+
+export default withRouter(PrimarySearchAppBar);

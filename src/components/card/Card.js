@@ -27,7 +27,6 @@ export default function SimpleCard({ title, value }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const theme = useTheme();
-  console.log({ theme });
   const { primary, secondary } = theme.palette;
   return (
     <Card className={classes.root}>
