@@ -4,6 +4,7 @@ import Drawer from "./components/Drawer/Drawer";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "./components/screens/dashboard/Dashboard";
 import Vendors from "./components/screens/vendors/Vendors";
+import Orders from "./components/screens/orders/Orders";
 import Box from "@material-ui/core/Box";
 
 function App() {
@@ -40,7 +41,8 @@ function App() {
             path="/vendors"
             component={Vendors}
           />
-          {/* <PrivateRoute userInfo={userInfo} path="/orders" component={Orders} />
+          <PrivateRoute userInfo={userInfo} path="/orders" component={Orders} />
+          {/* 
         <PrivateRoute
           userInfo={userInfo}
           path="/customers"

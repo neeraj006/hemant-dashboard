@@ -68,10 +68,11 @@ const rows = [
       isDropdown: true,
       selectedValue: "pending",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
 
     paymentStatus: "pending",
+    action: "Monday",
   },
   {
     id: 2,
@@ -85,9 +86,10 @@ const rows = [
       isDropdown: true,
       selectedValue: "pending",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
     paymentStatus: "pending",
+    action: "Monday",
   },
   {
     id: 3,
@@ -101,9 +103,10 @@ const rows = [
       isDropdown: true,
       selectedValue: "pending",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
     paymentStatus: "pending",
+    action: "Monday",
   },
   {
     id: 4,
@@ -117,9 +120,10 @@ const rows = [
       isDropdown: true,
       selectedValue: "canceled",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
     paymentStatus: "pending",
+    action: "Monday",
   },
   {
     id: 5,
@@ -133,9 +137,10 @@ const rows = [
       isDropdown: true,
       selectedValue: "pending",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
     paymentStatus: "pending",
+    action: "Monday",
   },
   {
     id: 6,
@@ -149,9 +154,10 @@ const rows = [
       isDropdown: true,
       selectedValue: "partial",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
     paymentStatus: "pending",
+    action: "Monday",
   },
   {
     id: 7,
@@ -165,9 +171,10 @@ const rows = [
       isDropdown: true,
       selectedValue: "complete",
       values: ["pending", "complete", "partial", "canceled"],
-      disabled: true,
+      disabled: false,
     },
     paymentStatus: "pending",
+    action: "Monday",
   },
 ];
 
@@ -223,37 +230,8 @@ export default class Dashboard extends Component {
     ];
     return (
       <div>
-        <h3>Dashboard</h3>
-        <Box display="flex" flexDirection="row" flexWrap="wrap">
-          <Box m={5}>
-            <Card
-              title="Total Orders"
-              value="100"
-              icon={<DateRangeIcon color="secondary" fontSize="large" />}
-            />
-          </Box>
-          <Box m={5}>
-            <Card
-              title="Vendors"
-              value="5"
-              icon={<StoreIcon color="secondary" fontSize="large" />}
-            />
-          </Box>
-          <Box m={5}>
-            <Card
-              title="Customers"
-              value="1000"
-              icon={<PersonIcon color="secondary" fontSize="large" />}
-            />
-          </Box>
-          <Box m={5}>
-            <Card
-              title="Amount"
-              value="50000"
-              icon={<MonetizationOnIcon color="secondary" fontSize="large" />}
-            />
-          </Box>
-        </Box>
+        <h3>Orders</h3>
+
         <Table
           columns={this.state.columns}
           rows={this.state.rows}

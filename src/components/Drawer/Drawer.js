@@ -28,14 +28,43 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import { withRouter } from "react-router-dom";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import StoreIcon from "@material-ui/icons/Store";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import PersonIcon from "@material-ui/icons/Person";
+import ViewCarouselIcon from "@material-ui/icons/ViewCarousel";
 
 const routes = [
-  { screenName: "Dashboard", path: "/dashboard" },
-  { screenName: "Vendors", path: "/vendors" },
-  { screenName: "Orders", path: "/orders" },
-  { screenName: "Customers", path: "/customers" },
-  { screenName: "Users", path: "/users" },
-  { screenName: "Banners", path: "/banners" },
+  {
+    screenName: "Dashboard",
+    path: "/dashboard",
+    icon: <DashboardIcon color="secondary" />,
+  },
+  {
+    screenName: "Vendors",
+    path: "/vendors",
+    icon: <StoreIcon color="secondary" />,
+  },
+  {
+    screenName: "Orders",
+    path: "/orders",
+    icon: <DateRangeIcon color="secondary" />,
+  },
+  {
+    screenName: "Customers",
+    path: "/customers",
+    icon: <PersonIcon color="secondary" />,
+  },
+  {
+    screenName: "Users",
+    path: "/users",
+    icon: <PersonIcon color="secondary" />,
+  },
+  {
+    screenName: "Banners",
+    path: "/banners",
+    icon: <ViewCarouselIcon color="secondary" />,
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -79,6 +108,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       display: "none",
     },
+  },
+  drawerItem: {
+    minWidth: 250,
   },
 }));
 
@@ -190,7 +222,7 @@ function PrimarySearchAppBar({ history }) {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Operation Portal
           </Typography>
 
           <div className={classes.grow} />
@@ -254,8 +286,9 @@ function PrimarySearchAppBar({ history }) {
               button
               key={route.screenName}
               onClick={() => history.push(route.path)}
+              className={classes.drawerItem}
             >
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              <ListItemIcon>{route.icon}</ListItemIcon>
               <ListItemText primary={route.screenName} />
             </ListItem>
           ))}
