@@ -5,6 +5,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import DoneIcon from "@material-ui/icons/DoneAllTwoTone";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({ title, value }) {
+export default function SimpleCard({ title, value, icon }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const theme = useTheme();
@@ -31,18 +33,23 @@ export default function SimpleCard({ title, value }) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography
-          className={classes.title}
-          variant="h5"
-          component="h2"
-          color="primary"
-          gutterBottom
-        >
-          {title}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {value}
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Box>
+            <Typography
+              className={classes.title}
+              variant="h5"
+              component="h2"
+              color="primary"
+              gutterBottom
+            >
+              {title}
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {value}
+            </Typography>
+          </Box>
+          <Box>{icon}</Box>
+        </Box>
       </CardContent>
     </Card>
   );

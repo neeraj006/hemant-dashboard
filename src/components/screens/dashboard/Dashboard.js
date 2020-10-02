@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Card from "../../card/Card";
 import Box from "@material-ui/core/Box";
 import Table from "../../table/Table";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import StoreIcon from "@material-ui/icons/Store";
+import PersonIcon from "@material-ui/icons/Person";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 
 const headCells = [
   {
@@ -100,16 +104,32 @@ export default class Dashboard extends Component {
         <h3>Dashboard</h3>
         <Box display="flex" flexDirection="row" flexWrap="wrap">
           <Box m={5}>
-            <Card title="Total Orders" value="100" />
+            <Card
+              title="Total Orders"
+              value="100"
+              icon={<DateRangeIcon color="secondary" fontSize="large" />}
+            />
           </Box>
           <Box m={5}>
-            <Card title="Total Orders" value="100" />
+            <Card
+              title="Vendors"
+              value="5"
+              icon={<StoreIcon color="secondary" fontSize="large" />}
+            />
           </Box>
           <Box m={5}>
-            <Card title="Total Orders" value="100" />
+            <Card
+              title="Customers"
+              value="1000"
+              icon={<PersonIcon color="secondary" fontSize="large" />}
+            />
           </Box>
           <Box m={5}>
-            <Card title="Total Orders" value="100" />
+            <Card
+              title="Amount"
+              value="50000"
+              icon={<MonetizationOnIcon color="secondary" fontSize="large" />}
+            />
           </Box>
         </Box>
         <Table

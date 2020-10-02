@@ -201,7 +201,7 @@ const EnhancedTableToolbar = (props) => {
               </IconButton>
             </Tooltip>
           ) : (
-            <Box>
+            <Box display="flex">
               <Tooltip title="Edit">
                 <IconButton
                   aria-label="edit"

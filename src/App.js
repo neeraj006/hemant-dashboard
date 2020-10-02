@@ -1,9 +1,10 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import Drawer from "./components/Drawer/Drawer";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "./components/screens/dashboard/Dashboard";
 import Vendors from "./components/screens/vendors/Vendors";
+import Box from "@material-ui/core/Box";
 
 function App() {
   const userInfo = { accessToken: true };
@@ -22,20 +23,24 @@ function App() {
       />
     );
   };
-
   return (
     <div className="App">
       {userInfo.accessToken && <Drawer />}
 
-      <Switch>
-        {/* <Route path="/login" component={Login} /> */}
-        <PrivateRoute
-          userInfo={userInfo}
-          path="/dashboard"
-          component={Dashboard}
-        />
-        <PrivateRoute userInfo={userInfo} path="/vendors" component={Vendors} />
-        {/* <PrivateRoute userInfo={userInfo} path="/orders" component={Orders} />
+      <Box width="80%" mx="auto">
+        <Switch>
+          {/* <Route path="/login" component={Login} /> */}
+          <PrivateRoute
+            userInfo={userInfo}
+            path="/dashboard"
+            component={Dashboard}
+          />
+          <PrivateRoute
+            userInfo={userInfo}
+            path="/vendors"
+            component={Vendors}
+          />
+          {/* <PrivateRoute userInfo={userInfo} path="/orders" component={Orders} />
         <PrivateRoute
           userInfo={userInfo}
           path="/customers"
@@ -46,8 +51,9 @@ function App() {
 
         <PrivateRoute userInfo={userInfo} path="/banners" component={Banners} /> */}
 
-        <Redirect to="/dashboard" />
-      </Switch>
+          <Redirect to="/dashboard" />
+        </Switch>
+      </Box>
     </div>
   );
 }
