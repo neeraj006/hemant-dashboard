@@ -10,6 +10,15 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Select from "../select/Select";
 import Menu from "../menu/Menu";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 const useStyles = makeStyles({
   root: {
@@ -22,6 +31,9 @@ export default function StickyHeadTable({
   columns,
   onOrderStatusChange,
   actions,
+  tableName,
+  addNewRecordLabel = null,
+  openNewRecordModal,
 }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -38,6 +50,25 @@ export default function StickyHeadTable({
 
   return (
     <Paper className={classes.root}>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+      >
+        <Box>
+          <Typography variant="h5" component="h5">
+            {tableName}
+          </Typography>
+        </Box>
+        {addNewRecordLabel && (
+          <Box onClick={openNewRecordModal}>
+            <Button variant="contained" color="primary">
+              {addNewRecordLabel}
+            </Button>
+          </Box>
+        )}
+      </Box>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -57,14 +88,15 @@ export default function StickyHeadTable({
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.fieldName];
+                      console.log(column.fieldName, row[column.fieldName]);
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {value.isDropdown ? (
+                          {value.isDropdown && (
                             <Select
                               values={value.values}
                               onChange={(selectedValue) =>
@@ -73,9 +105,30 @@ export default function StickyHeadTable({
                               selectedValue={value.selectedValue}
                               disabled={value.disabled}
                             />
-                          ) : (
-                            value
                           )}
+                          {value.isImage && (
+                            <a href={value.imageUrl}>Vendor Image</a>
+                          )}
+                          {value.isTimePicker && (
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                              <KeyboardTimePicker
+                                margin="normal"
+                                id={`Time Picker-${index}`}
+                                value={
+                                  value.value ? new Date(value.value) : null
+                                }
+                                onChange={(e) => console.log(e)}
+                                disabled
+                                KeyboardButtonProps={{
+                                  "aria-label": "change time",
+                                }}
+                              />
+                            </MuiPickersUtilsProvider>
+                          )}
+                          {!value.isImage &&
+                            !value.isDropdown &&
+                            !value.isTimePicker &&
+                            value}
                         </TableCell>
                       );
                     })}

@@ -257,10 +257,9 @@ export default class Dashboard extends Component {
         <Table
           columns={this.state.columns}
           rows={this.state.rows}
-          onRowDeleted={this.onRowDeleted}
-          handleRowChange={this.handleRowChange}
           onOrderStatusChange={this.onOrderStatusChange}
           actions={actions}
+          tableName="Orders"
         />
       </div>
     );

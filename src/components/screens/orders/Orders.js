@@ -239,6 +239,7 @@ export default class Dashboard extends Component {
           handleRowChange={this.handleRowChange}
           onOrderStatusChange={this.onOrderStatusChange}
           actions={actions}
+          tableName="Orders"
         />
       </div>
     );
